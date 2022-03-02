@@ -1,0 +1,137 @@
+{
+  "icon": "./assets/icon.svg",
+  "name": "Pictogram",
+  "hint": "Pictogram Chart",
+  "options": {
+    "aggregation": true,
+    "individualFilter": true
+  },
+  "settings": [
+    {
+      "name": "LAYOUT",
+      "settings": [
+        {
+          "name": "Sort",
+          "key": "sort",
+          "type": "dropdown",
+          "defaultValue": "descending",
+          "options": [
+            { "key": "descending", "label": "Descending" },
+            { "key": "ascending", "label": "Ascending" },
+            { "key": "none", "label": "None" }
+          ]
+        },
+        {
+          "name": "Legend",
+          "key": "legend",
+          "type": "boolean",
+          "defaultValue": true
+        },
+        {
+          "name": "Legend Position",
+          "key": "legendPosition",
+          "type": "dropdown",
+          "defaultValue": "bottom",
+          "options": [
+            { "key": "top", "label": "Top" },
+            { "key": "bottom", "label": "Bottom" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": {
+        "key": "group"
+      },
+      "settings": [
+        {
+          "name": "Is Percent",
+          "key": "isPercent",
+          "type": "boolean",
+          "defaultValue": false
+        },
+        {
+          "name": "Icon Type",
+          "key": "iconType",
+          "type": "dropdown",
+          "defaultValue": "population",
+          "options": [
+            { "key": "population", "label": "Population" },
+            { "key": "euro", "label": "Euro" },
+            { "key": "dollar", "label": "Dollar" },
+            { "key": "pill", "label": "Pill" },
+            { "key": "vaccine", "label": "Vaccine" },
+            { "key": "box", "label": "Box" },
+            { "key": "truck", "label": "Truck" },
+            { "key": "store", "label": "Store" },
+            { "key": "cargoShip", "label": "CargoShip" },
+            { "key": "factory", "label": "Factory" },
+            { "key": "chicken", "label": "Chicken" },
+            { "key": "pig", "label": "Pig" },
+            { "key": "apple", "label": "Apple" },
+            { "key": "sheep", "label": "Sheep" },
+            { "key": "umbrella", "label": "Umbrella" }
+          ]
+        }
+      ]
+    }
+  ],
+  "bindingsTrays": [
+    {
+      "key": "row",
+      "name": "GROUPING DIMENSION",
+      "queryRole": "row",
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "key": "col",
+      "name": "COLORING DIMENSION",
+      "queryRole": "column",
+      "maxCount": 1,
+      "settings": [
+        {
+          "name": "Customization",
+          "settings": [
+            {
+              "name": "Sort",
+              "key": "sort",
+              "type": "dropdown",
+              "defaultValue": "none",
+              "options": [
+                { "key": "descending", "label": "Descending" },
+                { "key": "ascending", "label": "Ascending" },
+                { "key": "none", "label": "None" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "measure",
+      "name": "MEASURE",
+      "queryRole": "measure",
+      "minCount": 1,
+      "maxCount": 1,
+      "settings": [
+        {
+          "name": "Customization",
+          "settings": [
+            {
+              "name": "Format",
+              "key": "format",
+              "type": "number-format",
+              "defaultValue": "###,##0.00"
+            },
+            {
+              "name": "Color",
+              "key": "color",
+              "type": "color"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

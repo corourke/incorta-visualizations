@@ -1,0 +1,103 @@
+{
+  "icon": "./assets/icon.png",
+  "name": "Dual Dynamic KPI",
+  "hint": "Dual Dynamic KPI can aggregate data according to dimension groups and show up to 2 measure values accordingly",
+  "options": {
+    "aggregation": true
+  },
+  "bindingsTrays": [
+    {
+      "key": "dim",
+      "name": "Dimension",
+      "queryRole": "row",
+      "minCount": 1,
+      "maxCount": 1,
+      "settings": [
+        {
+          "name": "Settings",
+          "settings": [
+            {
+              "name": "Sorting",
+              "key": "sort1",
+              "type": "sort"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "tray-key",
+      "name": "Primary Measure",
+      "queryRole": "measure",
+      "minCount": 1,
+      "maxCount": 1,
+      "settings": [
+        {
+          "name": "Number Format",
+          "settings": [
+            {
+              "name": "Scale",
+              "key": "scale1",
+              "type": "scale"
+            },
+            {
+              "name": "Format",
+              "key": "format",
+              "type": "number-format",
+              "defaultValue": "###,###"
+            },
+            {
+              "name": "Conditional Formatting",
+              "key": "cond-format2",
+              "type": "conditional-formatting"
+            }
+          ]
+        },
+        {
+          "name": "Filters",
+          "settings": [
+            {
+              "name": "Filter",
+              "key": "filter1",
+              "type": "filter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "tray-key2",
+      "name": "Secondary Measure",
+      "queryRole": "measure",
+      "maxCount": 1,
+      "settings": [
+        {
+          "name": "Number Format",
+          "settings": [
+            {
+              "name": "Scale",
+              "key": "scale2",
+              "type": "scale"
+            },
+            {
+              "name": "Format",
+              "key": "format",
+              "type": "number-format",
+              "defaultValue": "###,###"
+            }
+          ]
+        },
+        {
+          "name": "Filters",
+          "settings": [
+            {
+              "name": "Filter",
+              "key": "filter2",
+              "type": "filter"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

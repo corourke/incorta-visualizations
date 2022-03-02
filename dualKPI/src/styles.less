@@ -1,0 +1,74 @@
+.visualizations__kpi-container {
+  margin: 0;
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  .visualizations__data-item {
+    padding: 0 16px 16px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .visualizations__data-item__container {
+      display: flex;
+      flex-direction: column;
+      padding-right: 8px;
+      border-right: 2px solid #255888;
+    }
+
+    &-pointer {
+      cursor: pointer;
+    }
+
+    &__value,
+    &__label {
+      line-height: 1;
+    }
+
+    &__value {
+      font-size: 24px;
+      align-self: flex-end;
+      white-space: nowrap;
+      line-height: 28px;
+      font-weight: 500;
+      color: #255888;
+    }
+
+    &__label {
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 400;
+      align-self: flex-end;
+      white-space: nowrap;
+      color: black;
+    }
+  }
+
+  .visualizations__data-info {
+    display: flex;
+    gap: 4px;
+    font-weight: 400;
+    font-size: 24px;
+  }
+
+  .arrowUp,
+  .priceChangeUp {
+    color: #52c41a;
+  }
+
+  .arrowDown,
+  .priceChangeDown {
+    color: #c41a1a;
+  }
+}

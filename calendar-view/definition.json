@@ -1,0 +1,26 @@
+{
+  "icon": "./assets/calendar-icon.png",
+  "name": "Calender View",
+  "hint": "Calender View",
+  "options": {
+    "aggregation": true,
+    "individualFilter": true
+  },
+  "settings": [],
+  "bindingsTrays": [
+    {
+      "key": "row",
+      "name": "Date/Time",
+      "queryRole": "row",
+      "maxCount": 1,
+      "minCount": 1
+    },
+    {
+      "key": "measure",
+      "name": "Measure",
+      "queryRole": "measure",
+      "maxCount": 1,
+      "minCount": 1
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "icon": "./assets/icon.png",
+  "name": "Crypto",
+  "hint": "Crypto chart",
+  "settings": [
+    {
+      "name": {
+        "key": "Configuration"
+      },
+      "settings": [
+        {
+          "name": {
+            "key": "Max Tiles"
+          },
+          "key": "maxTiles",
+          "defaultValue": 4,
+          "type": "number"
+        }
+      ]
+    }
+  ],
+  "bindingsTrays": [
+    {
+      "key": "coin_id",
+      "name": "Coin-ID",
+      "queryRole": "row",
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "key": "position",
+      "name": "Position",
+      "queryRole": "measure",
+      "minCount": 1,
+      "maxCount": 1
+    }
+  ]
+}

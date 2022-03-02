@@ -1,0 +1,57 @@
+/* add css module styles here (optional) */
+
+.Chart {
+  overflow: auto;
+}
+
+.Chart__unit {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.Chart__legends {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 8px;
+  max-height: calc(30px * 4);
+  overflow: auto;
+  > * {
+    flex-shrink: 0;
+    margin: 4px;
+  }
+}
+.Chart__legend {
+  display: flex;
+  align-items: center;
+}
+.Chart__legend-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.Chart__row {
+  margin-bottom: 8px;
+}
+
+.Chart__label {
+  margin-left: 4px;
+  margin-bottom: 4px;
+}
+.Chart__label-value {
+  opacity: 0.7;
+}
+
+.Chart__items {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 24px;
+
+  > * {
+    margin-bottom: 8px;
+  }
+}

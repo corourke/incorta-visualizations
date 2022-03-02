@@ -1,0 +1,64 @@
+{
+  "icon": "./assets/icon.png",
+  "name": "Bubble Race",
+  "hint": "Bubble Race Chart",
+  "options": {
+    "aggregation": true
+  },
+  "settings": [
+    {
+      "name": {
+        "key": "group"
+      },
+      "settings": [
+        {
+          "name": "Duration",
+          "key": "duration",
+          "type": "number",
+          "defaultValue": 1000
+        }
+      ]
+    }
+  ],
+  "bindingsTrays": [
+    {
+      "key": "name",
+      "name": "Name",
+      "queryRole": "row",
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "key": "color",
+      "name": "Color",
+      "queryRole": "row",
+      "maxCount": 1
+    },
+    {
+      "key": "value",
+      "name": "Value",
+      "queryRole": "measure",
+      "settings": [
+        {
+          "name": "Settings",
+          "settings": [
+            {
+              "name": "Running Total",
+              "key": "running-total",
+              "type": "running-total"
+            }
+          ]
+        }
+      ],
+      "minCount": 3,
+      "maxCount": 3
+    },
+    {
+      "key": "time",
+      "name": "Time",
+      "queryRole": "row",
+      "minCount": 1,
+      "maxCount": 1
+    }
+  ]
+}

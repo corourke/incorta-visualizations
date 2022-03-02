@@ -1,0 +1,73 @@
+{
+  "icon": "./assets/icon.png",
+  "name": "SimpleKPI",
+  "hint": "SimpleKPI Chart",
+  "options": {
+    "aggregation": true
+  },
+  "settings": [
+    {
+      "name": {
+        "key": "group"
+      },
+      "settings": [
+        {
+          "name": {
+            "key": "Max Tiles"
+          },
+          "key": "maxTiles",
+          "type": "number"
+        },
+        {
+          "name": "icon URL",
+          "key": "iconURL",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "bindingsTrays": [
+    {
+      "key": "dim",
+      "name": "Dimension",
+      "queryRole": "row",
+      "minCount": 1
+    },
+    {
+      "key": "tray-key",
+      "name": "measure1",
+      "queryRole": "measure",
+      "minCount": 1,
+      "settings": [
+        {
+          "name": "Number Format",
+          "settings": [
+            {
+              "name": "Format",
+              "key": "format",
+              "type": "number-format"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "tray-key2",
+      "name": "measure2",
+      "queryRole": "measure",
+      "minCount": 1,
+      "settings": [
+        {
+          "name": "Number Format",
+          "settings": [
+            {
+              "name": "Format",
+              "key": "format",
+              "type": "number-format"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

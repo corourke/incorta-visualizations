@@ -1,0 +1,40 @@
+/* add css module styles here (optional) */
+
+.PlaySlider {
+  padding: 16px 8px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: center;
+  button {
+    height: 48px;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-size: 24px;
+    &:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.PlaySlider-slider-wrapper {
+  padding: 0 8px;
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+.PlaySlider-slider-label {
+  margin-bottom: 4px;
+}
+
+.PlaySlider-slider {
+  [data-reach-slider-handle][aria-orientation='horizontal'] {
+    transform: translateY(-50%) translateX(-50%);
+  }
+}
