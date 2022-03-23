@@ -2,34 +2,43 @@
 import { useD3 } from './hooks/useD3';
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
-import { ComponentProps } from '@incorta-org/component-sdk';
+import {
+  useContext,
+  LoadingOverlay,
+  ErrorOverlay,
+  usePrompts,
+  useQuery
+} from '@incorta-org/component-sdk';
 import { bars, axis, labels, ticker, margin, n, barSize, getKeyframes } from './utils';
 import { FiPlay, FiPause } from 'react-icons/fi';
 import { format } from 'date-fns';
 import { Slider } from '@reach/slider';
 import '@reach/slider/styles.css';
+``;
 import './styles.less';
 
-function BarChart({ response: data, context }: ComponentProps) {
-  let { width, height } = context.component.dimensions;
-  const duration = context.component.settings.duration;
-  let { period } = context.component.bindings ?? {};
-  let periodRow = period?.[0];
+function BarChart({ resData, context }) {
+  const { width, height } = context?.component.dimensions ?? {};
+  const duration = context?.component?.settings?.duration;
+  const { period } = context?.component.bindings ?? {};
+  const periodRow = period?.[0];
 
-  let [index, setIndex] = useState(0);
+  console.log({ 'context?.component?.settings': context?.component?.settings });
 
-  data = data.data.map(row => ({
+  const [index, setIndex] = useState(0);
+
+  data = resData.data.map(row => ({
     date: row[1].value,
     name: row[0].value,
     category: row.length === 4 ? row[2].value : undefined,
     value: row.length === 3 ? +row[2].value : +row[3].value
   }));
 
-  let stringifyData = JSON.stringify(data);
+  const stringifyData = JSON.stringify(data);
 
-  let keyframes = getKeyframes(data);
+  const keyframes = getKeyframes(data);
 
-  let updateFrame = useRef();
+  const updateFrame = useRef();
 
   const ref = useD3(
     async svg => {
@@ -51,7 +60,7 @@ function BarChart({ response: data, context }: ComponentProps) {
       const updateTicker = ticker(svg, width, keyframes);
 
       updateFrame.current = index => {
-        let keyframe = keyframes[index];
+        const keyframe = keyframes[index];
 
         const nameframes = d3.groups(
           keyframes.flatMap(([, data]) => data),
@@ -80,8 +89,8 @@ function BarChart({ response: data, context }: ComponentProps) {
     updateFrame.current(index);
   }, [index, width, height]);
 
-  let [playerDate] = keyframes[index];
-  let playerDateFormatted = format(playerDate, 'MM/dd/yyyy');
+  const [playerDate] = keyframes[index];
+  const playerDateFormatted = format(playerDate, 'MM/dd/yyyy');
 
   return (
     <div>
@@ -100,15 +109,25 @@ function BarChart({ response: data, context }: ComponentProps) {
   );
 }
 
-export default BarChart;
+export default () => {
+  const { prompts } = usePrompts();
+  const { data, context, isLoading, isError, error } = useQuery(useContext(), prompts);
+  return (
+    <ErrorOverlay isError={isError} error={error}>
+      <LoadingOverlay isLoading={isLoading} data={data}>
+        {context && data ? <BarChart resData={data} context={context} /> : null}
+      </LoadingOverlay>
+    </ErrorOverlay>
+  );
+};
 
 function PlaySlider({ label, duration, onChange, value, max, valueLabel }) {
-  let [play, setPlay] = useState(true);
+  const [play, setPlay] = useState(true);
 
   useEffect(() => {
     if (play) {
       if (value < max) {
-        let id = setTimeout(() => {
+        const id = setTimeout(() => {
           onChange(i => i + 1);
         }, duration);
         return () => {

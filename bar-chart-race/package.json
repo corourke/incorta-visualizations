@@ -1,6 +1,6 @@
 {
   "id": "9e27809c-4db2-4ac2-9617-e83b58fddc82",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "name": "bar-race-chart",
   "description": "",
   "author": {
@@ -16,20 +16,17 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "create-incorta-visual package",
-    "start": "create-incorta-visual start",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint \"**/*.{ts,tsx}\"",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom"
+    "postinstall": "npm run generate",
+    "generate": "create-incorta-component generate",
+    "build": "create-incorta-component package",
+    "start": "create-incorta-component start"
   },
   "peerDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@incorta-org/create-incorta-visual": "0.0.5-alpha.12",
+    "@incorta-org/create-incorta-component": "0.0.1-alpha.14",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -44,7 +41,6 @@
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
-    "eslint-config-standard": "^14.1.0",
     "eslint-config-standard-react": "^9.2.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^11.0.0",
@@ -53,7 +49,6 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
     "less": "^4.1.1",
-    "microbundle": "^0.13.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
     "react": "^17.0.2",
@@ -64,7 +59,7 @@
   },
   "files": ["dist"],
   "dependencies": {
-    "@incorta-org/component-sdk": "^0.0.1-alpha.3",
+    "@incorta-org/component-sdk": "^1.0.0-alpha.4",
     "@reach/slider": "^0.16.0",
     "d3": "^7.0.1",
     "date-fns": "^2.25.0",

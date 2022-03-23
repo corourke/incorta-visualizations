@@ -3,9 +3,7 @@
   "name": "Numeric Range Slicer",
   "hint": "Numeric Range Slicer",
   "options": {
-    "aggregation": true,
-    "individualFilter": true,
-    "ignoreRuntimeFilterTrayKeys": ["field"]
+    "individualFilter": true
   },
   "settings": [],
   "bindingsTrays": [
@@ -16,22 +14,6 @@
       "minCount": 1,
       "maxCount": 1,
       "allowBindingTypes": ["measure"]
-    },
-    {
-      "key": "min",
-      "name": "Min",
-      "queryRole": "measure",
-      "minCount": 1,
-      "maxCount": 1,
-      "allowBindingTypes": ["measure", "formula"]
-    },
-    {
-      "key": "max",
-      "name": "Max",
-      "queryRole": "measure",
-      "minCount": 1,
-      "maxCount": 1,
-      "allowBindingTypes": ["measure", "formula"]
     }
   ]
 }

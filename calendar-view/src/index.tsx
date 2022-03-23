@@ -1,16 +1,22 @@
 import React, { useMemo } from 'react';
-import { ComponentProps } from '@incorta-org/component-sdk';
+import {
+  usePrompts,
+  useQuery,
+  useContext,
+  ErrorOverlay,
+  LoadingOverlay
+} from '@incorta-org/component-sdk';
 import ReactECharts from 'echarts-for-react';
 import * as echarts from 'echarts';
 import * as _ from 'lodash';
 import './styles.less';
 
-const CalendarVisual = (props: ComponentProps) => {
+function CalendarVisual({ resData, context }: any) {
   if (
     // @ts-ignore
-    props.response.rowHeaders?.[0].dataType !== 'date' &&
+    resData.rowHeaders?.[0].dataType !== 'date' &&
     // @ts-ignore
-    props.response.rowHeaders?.[0].dataType !== 'timestamp'
+    resData.rowHeaders?.[0].dataType !== 'timestamp'
   ) {
     return (
       <div
@@ -18,8 +24,8 @@ const CalendarVisual = (props: ComponentProps) => {
           display: 'grid',
           alignItems: 'center',
           justifyContent: 'center',
-          width: props.context.component.dimensions.width,
-          height: props.context.component.dimensions.height
+          width: context.component.dimensions.width,
+          height: context.component.dimensions.height
         }}
       >
         Invalid Date/Time!
@@ -28,9 +34,9 @@ const CalendarVisual = (props: ComponentProps) => {
   }
 
   const calData = useMemo(() => {
-    return _.chain(props.response.data)
+    return _.chain(resData.data)
       .groupBy(row => echarts.format.formatTime('yyyy', row[0].value))
-      .mapValues(data => data.map(row => row.map(cell => cell.value)))
+      .mapValues(data => data.map(row => row.map((cell: any) => cell.value)))
       .entries()
       .value()
       .map((entry, index) => ({
@@ -46,7 +52,7 @@ const CalendarVisual = (props: ComponentProps) => {
           data: entry[1].map(row => [echarts.format.formatTime('yyyy-MM-dd', row[0]), +row[1]])
         }
       }));
-  }, [props.response.data]);
+  }, [resData.data]);
 
   const [min, max] = useMemo(() => {
     const flatData = calData.flatMap(x => x.series.data.map(x => x[1]));
@@ -58,7 +64,7 @@ const CalendarVisual = (props: ComponentProps) => {
     tooltip: {
       position: 'top',
       formatter: (params: any) => {
-        return `${params.marker} ${props.response.measureHeaders?.[0].label} : ${params.value[1]}`;
+        return `${params.marker} ${resData.measureHeaders?.[0].label} : ${params.value[1]}`;
       }
     },
     visualMap: {
@@ -81,8 +87,8 @@ const CalendarVisual = (props: ComponentProps) => {
     <div
       style={{
         overflow: 'auto',
-        width: props.context.component.dimensions.width,
-        height: props.context.component.dimensions.height
+        width: context.component.dimensions.width,
+        height: context.component.dimensions.height
       }}
     >
       <ReactECharts
@@ -90,11 +96,21 @@ const CalendarVisual = (props: ComponentProps) => {
         option={option}
         style={{
           height: calData.length * 200 + 50,
-          width: props.context.component.dimensions.width
+          width: context.component.dimensions.width
         }}
       />
     </div>
   );
-};
+}
 
-export default CalendarVisual;
+export default () => {
+  const { prompts } = usePrompts();
+  const { data, context, isLoading, isError, error } = useQuery(useContext(), prompts);
+  return (
+    <ErrorOverlay isError={isError} error={error}>
+      <LoadingOverlay isLoading={isLoading} data={data}>
+        {context && data ? <CalendarVisual resData={data} context={context} /> : null}
+      </LoadingOverlay>
+    </ErrorOverlay>
+  );
+};

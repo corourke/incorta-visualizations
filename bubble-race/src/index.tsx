@@ -1,19 +1,22 @@
 // @ts-nocheck
 
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ComponentProps } from '@incorta-org/component-sdk';
+import React, { useEffect, useMemo, useState } from 'react';
+import {
+  ErrorOverlay,
+  LoadingOverlay,
+  useContext,
+  usePrompts,
+  useQuery
+} from '@incorta-org/component-sdk';
 import './styles.less';
 import { Bubble } from 'react-chartjs-2';
 import { FiPlay, FiPause } from 'react-icons/fi';
 import { Slider } from '@reach/slider';
 import '@reach/slider/styles.css';
 
-const BubbleRace = (props: ComponentProps) => {
-  console.log({ props });
-
-  let colorPalette = props.context.app.color_palette;
-  let context = props.context;
-  let incortaData = props.response;
+function BubbleRace({ resData, context }) {
+  let colorPalette = context.app.color_palette;
+  let incortaData = resData;
   let {
     name: nameBinding,
     color: colorBinding,
@@ -147,7 +150,7 @@ const BubbleRace = (props: ComponentProps) => {
 
   return (
     <BubbleRaceChart
-      dimensions={props.context.component.dimensions}
+      dimensions={context.component.dimensions}
       datesData={datesData}
       datesRange={datesRange}
       options={options}
@@ -155,7 +158,7 @@ const BubbleRace = (props: ComponentProps) => {
       label={timeBinding[0].name}
     />
   );
-};
+}
 
 function BubbleRaceChart({ dimensions, datesData, datesRange, options, duration, label }) {
   let hasColorCol = !!Object.values(datesData)[0];
@@ -291,4 +294,14 @@ function PlaySlider({ label, duration, onChange, value, max, valueLabel }) {
   );
 }
 
-export default BubbleRace;
+export default () => {
+  const { prompts } = usePrompts();
+  const { data, context, isLoading, isError, error } = useQuery(useContext(), prompts);
+  return (
+    <ErrorOverlay isError={isError} error={error}>
+      <LoadingOverlay isLoading={isLoading} data={data}>
+        {context && data ? <BubbleRace resData={data} context={context} /> : null}
+      </LoadingOverlay>
+    </ErrorOverlay>
+  );
+};

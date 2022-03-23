@@ -1,6 +1,6 @@
 {
-  "id": "ad0fae25-28ac-4b63-9f2f-808eb8c898d4",
-  "version": "0.0.9",
+  "id": "ad0fae25-28ac-4b63-9f2f-808eb8c898ad",
+  "version": "1.0.0",
   "name": "pictogram",
   "description": "",
   "author": {
@@ -16,24 +16,22 @@
     "node": ">=10"
   },
   "scripts": {
+    "postinstall": "npm run generate",
+    "generate": "create-incorta-component generate",
     "build": "create-incorta-component package",
-    "start": "create-incorta-component start",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint \"**/*.{ts,tsx}\"",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom"
+    "start": "create-incorta-component start"
   },
   "peerDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@incorta-org/create-incorta-component": "0.0.1-alpha.1",
+    "@incorta-org/create-incorta-component": "0.0.1-alpha.14",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^25.1.4",
+    "@types/lodash": "^4.14.179",
     "@types/node": "^12.12.38",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
@@ -52,7 +50,6 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
     "less": "^4.1.1",
-    "microbundle": "^0.13.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
     "react-scripts": "4.0.3",
@@ -60,7 +57,7 @@
   },
   "files": ["dist"],
   "dependencies": {
-    "@incorta-org/component-sdk": "^0.0.1-alpha.3",
+    "@incorta-org/component-sdk": "^1.0.0-alpha.4",
     "lodash": "^4.17.21",
     "numbro": "^2.3.5",
     "react": "^17.0.2",

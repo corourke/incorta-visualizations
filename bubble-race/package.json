@@ -1,6 +1,6 @@
 {
   "id": "89ec69c1-9372-42df-832f-b1312ea5935d",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "name": "bubble-race",
   "description": "",
   "author": {
@@ -16,20 +16,17 @@
     "node": ">=10"
   },
   "scripts": {
+    "postinstall": "npm run generate",
+    "generate": "create-incorta-component generate",
     "build": "create-incorta-component package",
-    "start": "create-incorta-component start",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint \"**/*.{ts,tsx}\"",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom"
+    "start": "create-incorta-component start"
   },
   "peerDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@incorta-org/create-incorta-component": "0.0.1-alpha.1",
+    "@incorta-org/create-incorta-component": "0.0.1-alpha.14",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -60,7 +57,7 @@
   },
   "files": ["dist"],
   "dependencies": {
-    "@incorta-org/component-sdk": "^0.0.1-alpha.3",
+    "@incorta-org/component-sdk": "^1.0.0-alpha.4",
     "@reach/slider": "^0.16.0",
     "chart.js": "^3.5.1",
     "d3": "^7.1.1",

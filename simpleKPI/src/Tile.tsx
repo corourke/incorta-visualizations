@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import './styles.less';
+import React from 'react';
 
 interface TileProps {
   dim: string;
   measure1: string;
   measure2: string;
-  iconURL: string
+  iconURL: string;
 }
 
-export const Tile: React.FC<TileProps> = ({ dim: coinId, measure1: aggPosition, measure2: price, iconURL: iconURL}) => {
-
+export const Tile: React.FC<TileProps> = ({
+  dim: coinId,
+  measure1: aggPosition,
+  measure2: price,
+  iconURL
+}) => {
   // TODO: Make the overall tile narrower and or responsive
   const renderCoinData = () => {
     // TODO: Need to allow for different currencies and locales
@@ -17,9 +20,7 @@ export const Tile: React.FC<TileProps> = ({ dim: coinId, measure1: aggPosition, 
     return Response ? (
       <>
         <div className="coinName">{coinId}</div>
-        <div className="percentChange">
-        {price}%
-        </div>
+        <div className="percentChange">{price}%</div>
         <img className="icon" src={iconURL} />
         {/* <div className="tradingPair">
           {response.data.symbol.toUpperCase()}
@@ -29,13 +30,8 @@ export const Tile: React.FC<TileProps> = ({ dim: coinId, measure1: aggPosition, 
           {price}
           <span className="currency">{iso_4217_code}</span>
         </div>
-        <div className="priceChange">
-          {aggPosition}
-        </div>
-        <div className="value">
-          Mkt Value:{' '}
-          {price}
-        </div>
+        <div className="priceChange">{aggPosition}</div>
+        <div className="value">Mkt Value: {price}</div>
       </>
     ) : (
       ''

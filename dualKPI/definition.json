@@ -5,6 +5,7 @@
   "options": {
     "aggregation": true
   },
+  "settings": [],
   "bindingsTrays": [
     {
       "key": "dim",
